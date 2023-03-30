@@ -7,6 +7,6 @@
 
 cd $SLURM_SUBMIT_DIR
 
-module load gcc/7.2.0
+module load gcc/11.1.0
 
 ./dotproduct_seq

@@ -7,8 +7,8 @@
 
 // Main routine
 int main (int argc, char *argv[]){
-	double sum, sum_local;
-	
+	double sum, sum_local, time_spent = 0.0;
+        int i;	
 	int n = 256;
 	double a [n], b[n];
 	int numprocs, myid, my_first, my_last;
@@ -23,13 +23,13 @@ int main (int argc, char *argv[]){
 	my_first = myid * n/numprocs;
 	my_last = (myid + 1) * n/numprocs;
 	
-	for (int i=1; i < n; i++){
+	for (i=1; i < n; i++){
 		a[i] = i * 0.5;
 		b[i] = i * 2.0;
 	}
 	
 	sum_local = 0;
-	for (int i= my_first; i < my_last; i++){
+	for (i= my_first; i < my_last; i++){
 		sum_local += a[i] * b[i];
 	}
 	

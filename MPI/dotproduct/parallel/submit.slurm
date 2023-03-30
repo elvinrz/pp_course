@@ -10,4 +10,4 @@ cd $SLURM_SUBMIT_DIR
 module load gcc/7.2.0
 module load mpich/3.2.1-gcc-7.2.0
 
-mpiexec -np 8 ./dotproduct
+mpiexec -np 16  ./dotproduct
