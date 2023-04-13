@@ -14,27 +14,32 @@
 
 // Main routine
 int main (int argc, char *argv[]){
-	int rank, size, number, counter;
-
+	int rank, size;
+	int token = 0;
+	int token_recv = 0;
 	// initialize MPI
 	MPI_Init(&argc, &argv);	
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);	
 	MPI_Comm_size(MPI_COMM_WORLD, &size);	
 
-	// generating random number
-	srand(time(NULL) * rank);//seed
-	number = rand() % size;
-	counter = 0;
-	
-	// computing sum of all numbers in the system
-	for(int i=0; i<size; i++){
 
-		// TO DO: circulate numbers around (use variable number to send and receive values) 
+	
+	if (rank == 0){
+		token = -1;
+		MPI_Send(&token, );
+		MPI_Recv(&token_recv, );
+		printf("Rank %d received from %d the token %d\n", rank, size-1, token_recv);
+	}else{
+		MPI_Recv(&token, );
+		if (rank == size-1){
+			MPI_Send(&token,);
+		}else{
+			MPI_Send(&token,);
+			printf("Token sent from %d to %d\n", rank, rank+1);
+		}
 		
-		// accumulate number
-		counter += number;
 	}
-	printf("[%d] Total sum: %d\n", rank, counter);
+	
 
 	// finalize MPI
 	MPI_Finalize();
